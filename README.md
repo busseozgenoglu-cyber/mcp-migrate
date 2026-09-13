@@ -23,7 +23,7 @@ uvx mcp-migrate fix . --write
 ```
 $ uvx mcp-migrate check tests/fixtures/fixer_roundtrip
 
-mcp-migrate v0.2.0  ->  fixer_roundtrip
+mcp-migrate v0.5.0  ->  fixer_roundtrip
 2 Python files, 21 rules, spec 2026-07-28
 
             rule    where         what
@@ -38,6 +38,7 @@ advisory    R010    (project)     This project registers MCP request handlers (t
                                   but has no server/discover implementation anywhere in the project.
 advisory    R016    server.py:32  This file implements a list/read handler but neither `ttlMs` nor
                                   `cacheScope` appears in it.
+advisory    R021    server.py:41  Pins an older JSON Schema dialect; 2026-07-28 requires 2020-12 support.
 
   R001  Uses Mcp-Session-Id, which no longer exists
   SEP-2567 https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2567
@@ -46,7 +47,7 @@ advisory    R016    server.py:32  This file implements a list/read handler but n
 
   [... one block like this per rule that fired ...]
 
-Grade F (26/100)  3 breaking, 2 deprecated, 4 advisory
+Grade F (27/100)  3 breaking, 2 deprecated, 5 advisory
 
 Add your server to the board:  mcp-migrate entry --repo owner/name
 ```
@@ -200,7 +201,7 @@ coverage is complete the reason it gives is a decision, not a fraction:
 ```
 $ mcp-migrate check ./my-ts-server
 
-mcp-migrate v0.2.0  ->  my-ts-server
+mcp-migrate v0.5.0  ->  my-ts-server
 
 No grade for this one. Found 1 TypeScript. Every rule reads it now, but
 whether it gets graded is still an open decision, not a coverage gap --
@@ -629,7 +630,7 @@ All of these were checked by this project, not submitted by the servers' maintai
 | server | grade | status | language | what it does |
 | --- | --- | --- | --- | --- |
 | [aws-documentation-mcp-server](https://github.com/awslabs/mcp) | **A** | ready | python | AWS Labs MCP server that fetches, searches, and recommends AWS documentation pages, converted to markdown. |
-| [cloudwatch-mcp-server](https://github.com/awslabs/mcp) | **A** | ready | python | AWS Labs MCP server for CloudWatch that gives troubleshooting agents alarm, metric, and log data for root cause analysis. |
+| [cloudwatch-mcp-server](https://github.com/awslabs/mcp) | **A** | ready | python | AWS Labs MCP server for CloudWatch that gives troubleshooting agents alarm, metric, and log data for root cause analysis tools. |
 | [duckduckgo-mcp-server](https://github.com/nickclyde/duckduckgo-mcp-server) | **A** | ready | python | MCP server that provides web search through DuckDuckGo, with additional content fetching and parsing features. |
 | [dynamodb-mcp-server](https://github.com/awslabs/mcp) | **A** | ready | python | Official AWS DynamoDB MCP server providing expert data modeling guidance, validation, and cost analysis tools. |
 | [mcp-server-motherduck](https://github.com/motherduckdb/mcp-server-motherduck) | **A** | ready | python | Local MCP server connecting AI assistants to DuckDB and MotherDuck for SQL analytics and data engineering. |
